@@ -1,1 +1,1 @@
-Hacktoberfest beginning!!
+Hacktoberfest is beginning!!
