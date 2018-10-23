@@ -39,23 +39,14 @@ int main(void)
 
   for (int i = 0; i < q; i++)
   {
-    // vector<string> temp;
-    // matching = temp;
+    
     maxPrio = 0;
     string qe;
     cin >> qe;
 
-    // moddedSearch(root, qe);
+    
     int retVal = anotherSearch(root, qe);
 
-    // for (auto s : matching)
-      // if (db[s] > retVal)
-        // retVal = db[s];
-
-    // if (maxPrio != 0)
-      // cout << maxPrio << endl;
-    // else
-      // cout << "-1" << endl;
     if (retVal == 0)
       cout << "-1" << endl;
     else
