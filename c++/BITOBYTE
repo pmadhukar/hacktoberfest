@@ -1,0 +1,25 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+int main() 
+{
+	int t,i;
+	cin>>t;
+	for(i=0;i<t;i++)
+	{
+	    long bi=0,ni=0,by=0,ti,x,y;
+	    cin>>ti;
+	    x=ti/26;
+	    y=ti%26;
+	    if(y==0)
+	    by=pow(2,x-1);
+	    else if(y<=2)
+	    bi=pow(2,x);
+	    else if(y<=10)
+	    ni=pow(2,x);
+	    else if(y<=26)
+	    by=pow(2,x);
+	    cout<<bi<<" "<<ni<<" "<<by<<endl;
+	}
+	return 0;
+}
