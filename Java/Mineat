@@ -1,0 +1,65 @@
+import java.util.Scanner;
+public class Main {
+    public static void calc(int []pile,int max,int h)
+    {
+        int beg=1,end=max;
+        int mid;
+        int time,rem,div;
+        int pos=0;
+        while(beg<=end)
+        {
+            mid=(beg+end)/2;
+            time=0;
+            for(int i=0;i<pile.length;i++)
+            {
+                div=pile[i]/mid;
+                rem=pile[i]%mid;
+                if(rem!=0)
+                {
+                    time=time+div+1;
+                }
+                else
+                {
+                    time=time+div;
+                }
+            }
+            if(time==h)
+            {
+                pos=mid;
+                end=mid-1;
+            }
+            else if(time>h)
+            {
+                beg=mid+1;
+                pos=mid+1;
+            }
+            else
+            {
+                end=mid-1;
+                pos=mid;
+            }
+        }
+        System.out.println(pos);
+    }
+    public static void main(String [] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for (int i=0;i<t;i++)
+        {
+            int n=sc.nextInt();
+            int h=sc.nextInt();
+            int [] pile =new int[n];
+            int max=0;
+            for(int j=0;j<n;j++)
+            {
+                pile[j]=sc.nextInt();
+                if(pile[j]>max)
+                {
+                    max=pile[j];
+                }
+            }
+            calc(pile,max,h);
+        }
+    }
+}
