@@ -1,0 +1,60 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    static void calc(long []stall,int c,long max)
+    {
+        Arrays.sort(stall);
+        long beg=1,end=max,mid;
+        long dis=-1;
+        while(beg<=end)
+        {
+            mid=beg+(end-beg)/2;
+            long counter =1,x=stall[0];
+            for(int i=1;i<stall.length;i++)
+            {
+                if(stall[i]>=x+mid)
+                {
+                    counter+=1;
+                    x=stall[i];
+                }
+                if(counter==c)
+                {
+                    break;
+                }
+            }
+            if(counter==c)
+            {
+                dis=mid;
+                beg=mid+1;
+            }
+            else
+            {
+                end=mid-1;
+            }
+        }
+        System.out.println(dis);
+    }
+
+    public static void main(String [] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int i=0;i<t;i++)
+        {
+            int n=sc.nextInt();
+            int c=sc.nextInt();
+            long max=0;
+            long stall[]=new long[n];
+            for(int j=0;j<n;j++)
+            {
+                stall[j]=sc.nextInt();
+                if(max<stall[j])
+                {
+                    max=stall[j];
+                }
+            }
+            calc(stall,c,max);
+        }
+    }
+}
