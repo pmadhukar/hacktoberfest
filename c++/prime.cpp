@@ -1,16 +1,12 @@
-#include <iostream>
-#include <cmath>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int main(void)
+int main()
 {
   int num;
   cout << "Give me a number!";
   cin >> num;
-
   int sqr = sqrt(num) + 1;
-
   bool isPrime = true;
   for (int i = 2; i < sqr; i++)
   {
@@ -25,6 +21,4 @@ int main(void)
     cout << "Prime" << endl;
   else
     cout << "Not prime" << endl;
-
-  return 0;
 }
