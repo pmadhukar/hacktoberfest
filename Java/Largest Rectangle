@@ -1,0 +1,135 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+    public static void area(int []h)
+    {
+        Stack<Integer> s=new Stack<>();
+        Stack<Integer> index=new Stack<>();
+        int right[]=new int[h.length];
+        for(int i=0;i<h.length;i++)
+        {
+            if(s.empty())
+            {
+                s.push(h[i]);
+                index.push(i);
+            }
+            else
+            {
+                if(h[i]<s.peek())
+                {
+                    while(h[i]<s.peek())
+                    {
+                        right[index.peek()]=i-index.peek();
+                        s.pop();
+                        index.pop();
+                        if (s.empty())
+                        {
+                            break;
+                        }
+                    }
+                    s.push(h[i]);
+                    index.push(i);
+                }
+                else
+                {
+                    s.push(h[i]);
+                    index.push(i);
+                }
+            }
+        }
+        int y=index.size();
+        for(int i=0;i<y;i++)
+        {
+            right[index.peek()]=h.length-index.peek();
+            index.pop();
+        }
+        for (int i=0;i<h.length;i++)
+        {
+            if(i==0)
+            {
+                System.out.print(right[i]);
+            }
+            else
+            {
+                System.out.print(" "+right[i]);
+            }
+        }
+        System.out.println();
+        s.removeAllElements();
+        index.removeAllElements();
+        int []left=new int[h.length];
+        for (int i =h.length-1; i>=0; i--)
+        {
+            if (s.empty()) {
+                s.push(h[i]);
+                index.push(i);
+            }
+            else
+            {
+                if (h[i] < s.peek())
+                {
+                    while (s.peek() > h[i])
+                    {
+                        left[index.peek()]=index.peek()-i;
+                        s.pop();
+                        index.pop();
+                        if (s.empty())
+                        {
+                            break;
+                        }
+                    }
+                    s.push(h[i]);
+                    index.push(i);
+                }
+                else
+                {
+                    s.push(h[i]);
+                    index.push(i);
+                }
+            }
+        }
+        y=index.size();
+        for(int i=0;i<y;i++)
+        {
+            left[index.peek()]=index.peek()+1;
+            index.pop();
+        }
+        for (int i=0;i<h.length;i++)
+        {
+            if(i==0)
+            {
+                System.out.print(left[i]);
+            }
+            else
+            {
+                System.out.print(" "+left[i]);
+            }
+        }
+        System.out.println();
+        long result=0,temp;
+        for(int i=0;i<h.length;i++)
+        {
+            temp=(right[i]+left[i]-1)*h[i];
+            if(result<temp)
+            {
+                result=temp;
+            }
+        }
+        System.out.println(result);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        for (int i = 0; i < t; i++) {
+            int n = sc.nextInt();
+            int[] h = new int[n];
+            for (int j = 0; j < n; j++)
+            {
+                h[j] = sc.nextInt();
+            }
+            area(h);
+        }
+    }
+}
